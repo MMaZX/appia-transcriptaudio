@@ -17,6 +17,7 @@ import 'package:record/record.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart' as path;
 import 'package:url_launcher/url_launcher.dart';
+import 'package:open_filex/open_filex.dart';
 
 class AudioRecorderController {
   final BuildContext context;
@@ -325,11 +326,9 @@ class TerminalStateNotifier extends StateNotifier<List<String>> {
 }
 
 Future<void> openFile(String filePath) async {
-  final Uri fileUri = Uri.file(filePath);
-
   try {
-    await canLaunchUrl(fileUri);
+    OpenFilex.open(filePath);
   } catch (e) {
-    print(e);
+    log(e.toString());
   }
 }
